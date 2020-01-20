@@ -1,20 +1,13 @@
 const express = require('express');
-const app = express();
-const path = require('path');
+const router = express.Router();
 
-//settings
-app.set('port',4000);
-app.set('views', path.join(__dirname, 'views'));
-app.engine('html', require('ejs').renderFile);
-app.set('view engine','ejs');
 
-//routes
-app.use(require('./routes/index'));
-
-//static files
-app.use(express.static(path.join(__dirname, 'public')));
-
-//listening the server
-app.listen(app.get('port'),() =>{
-    console.log('server activo en puerto',app.get('port'))
+router.get('/',(req,res)=>{
+    res.render('index.html',{ tittle: 'First WebSite'});
 });
+
+router.get('/gamesite',(req,res)=>{
+    res.render('gamesite.html',{ tittle: 'Game Site Page'});
+});
+
+module.exports = router;
